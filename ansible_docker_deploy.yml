@@ -31,7 +31,7 @@
 #         name: docker-py
 #         state: present
      - name: Start the container
-      docker_container:
+       docker_container:
           name: naveenapp
           image: "naveen023/sampleweb:{{BUILD_NUMBER}}"
           state: started
