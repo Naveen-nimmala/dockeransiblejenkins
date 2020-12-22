@@ -1,11 +1,39 @@
+# ---
+# - hosts: app
+#   become: True
+#   tasks:
+#   - name: Start the container
+#     docker_container:
+#         name: naveenapp
+#         image: "naveen023/sampleweb:{{BUILD_NUMBER}}"
+#         state: started
+#         published_ports:
+#           - 0.0.0.0:8080:8080
 ---
 - hosts: app
   become: True
   tasks:
-  - name: Start the container
-    docker_container:
-        name: naveenapp
-        image: "naveen023/sampleweb:{{BUILD_NUMBER}}"
+    - name: Install python pip
+      yum:
+        name: python-pip
+        state: present
+    - name: Install docker
+      yum:
+        name: docker
+        state: present
+    - name: start docker
+      service:
+        name: docker
         state: started
-        published_ports:
-          - 0.0.0.0:8080:8080
+        enabled: yes
+    - name: Install docker-py python module
+      pip:
+        name: docker-py
+        state: present
+    - name: Start the container
+      docker_container:
+          name: naveenapp
+          image: "naveen023/sampleweb:{{BUILD_NUMBER}}"
+          state: started
+          published_ports:
+            - 0.0.0.0:8080:8080
