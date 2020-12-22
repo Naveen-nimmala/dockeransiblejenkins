@@ -30,7 +30,7 @@
 #       pip:
 #         name: docker-py
 #         state: present
-     - name: removing existing containers
+     - name: stopping existing containers
        raw: docker container stop $(docker container ls -aq)
      - name: removing the stopped containers
        raw: docker container rm $(docker container ls -aq)
