@@ -3,7 +3,7 @@
   become: True
   tasks:
   - name: Start the container
-      docker_container:
+    docker_container:
         name: naveenapp
         image: "naveen023/sampleweb:{{DOCKER_TAG}}"
         state: started
