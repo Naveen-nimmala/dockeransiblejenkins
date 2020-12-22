@@ -30,14 +30,14 @@
 #       pip:
 #         name: docker-py
 #         state: present
-     - name: stopping existing containers
-       shell: docker container stop $(docker container ls -aq)
-     - name: removing the stopped containers
-       shell: docker container rm $(docker container ls -aq)
+#      - name: stopping existing containers
+#        shell: docker container stop $(docker container ls -aq)
+#      - name: removing the stopped containers
+#        shell: docker container rm $(docker container ls -aq)
      - name: Start the container
        docker_container:
-          name: naveenapp
-          image: "naveen023/sampleweb:{{BUILD_NUMBER}}"
+          name: facebooksample
+          image: "naveen023/facebook:{{BUILD_NUMBER}}"
           state: started
           published_ports:
             - 0.0.0.0:8080:8080
